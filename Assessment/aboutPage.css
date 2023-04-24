@@ -1,0 +1,96 @@
+/* Background */
+body {
+    background-color: whitesmoke;
+}
+
+/* text */
+p {
+    color: black;
+}
+
+/* Navigator */
+.navigatorBox {
+    height: 100px;
+    width: auto;
+    border-bottom: 1px solid black;;
+}
+
+nav {
+    height: 60px;
+    width: auto;
+    padding: 20px;
+}
+
+.About {
+    height: 60px;
+    width: 180px;
+    position: absolute;
+    left: 20px;
+}
+
+.Chatting {
+    height: 60px;
+    width: 100px;
+    position: absolute;
+    left: 200px;
+}
+
+.Introduction {
+    height: 60px;
+    width: 100px;
+    position: absolute;
+    left: 320px;
+}
+
+#textAbout {
+    font-size: 45px;
+    text-align: center;
+    margin: 0;
+}
+
+#textChatting {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+#textIntroduction {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+/* contentBox */
+.contentBox {
+    height: 480px;
+    width: auto;
+}
+
+/* helpBox */
+.helpBox {
+    height: 50px;
+    width: auto;
+    /* position: absolute;
+    bottom: 0; */
+    border-top: 1px solid black;;
+}
+
+#toKnowMore {
+    text-align: center;
+}
+
+
+/* Botton */
+/* Botton color */
+a {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+/* Botton underline */
+a:hover{
+text-decoration: underline;
+}
