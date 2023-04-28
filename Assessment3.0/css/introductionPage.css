@@ -1,0 +1,137 @@
+/* Background */
+body {
+    background-color: whitesmoke;
+}
+
+/* text */
+p {
+    color: black;
+}
+
+/* Navigator */
+.navigatorBox {
+    height: 100px;
+    width: auto;
+    border-bottom: 1px solid black;;
+}
+
+nav {
+    height: 60px;
+    width: auto;
+    padding: 20px;
+}
+
+.Introduction {
+    height: 60px;
+    width: 300px;
+    position: absolute;
+    left: 20px;
+}
+
+.About {
+    height: 60px;
+    width: 100px;
+    position: absolute;
+    left: 310px;
+}
+
+.Chatting {
+    height: 60px;
+    width: 100px;
+    position: absolute;
+    left: 410px;
+}
+
+#textIntroduction {
+    font-size: 45px;
+    text-align: center;
+    margin: 0;
+}
+
+#textAbout {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+#textChatting {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+/* contentBox */
+.contentBox {
+    height: 480px;
+    /* width: auto; */
+    display: grid;
+    grid-template-columns: 30% auto;
+}
+
+.profileBox {
+    background-color: whitesmoke;
+    border: solid 5px black;
+    padding: 10px;
+} 
+
+.whoIAm {
+    height: 220px;
+    width: auto;
+    overflow: auto;
+}
+
+.whatIAmStudying {
+    height: 220px;
+    width: auto;
+    overflow: auto;
+}
+
+/* text in the content */
+.textTitle {
+    font-family: 'Times New Roman';
+    font-size: 30px;
+    margin: 0;
+}
+
+.aText {
+    font-family: 'Times New Roman';
+    font-size: 18px;
+}
+
+/* image in the content  */
+.myImage {
+    height: auto;
+    max-width: 80%;
+}
+
+.isMe {
+    height: auto;
+    max-width: 90%;
+}
+
+/* helpBox */
+.helpBox {
+    height: 50px;
+    width: auto;
+    border-top: 1px solid black;;
+}
+
+#toKnowMore {
+    text-align: center;
+}
+
+
+/* Botton */
+/* Botton color */
+a {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+/* Botton underline */
+a:hover{
+text-decoration: underline;
+}

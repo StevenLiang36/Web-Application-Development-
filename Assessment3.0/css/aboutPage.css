@@ -1,0 +1,166 @@
+/* Background */
+body {
+    background-color: whitesmoke;
+}
+
+/* text */
+p {
+    color: black;
+}
+
+/* Navigator */
+.navigatorBox {
+    height: 100px;
+    width: auto;
+    border-bottom: 1px solid black;;
+}
+
+nav {
+    height: 60px;
+    width: auto;
+    padding: 20px;
+}
+
+.About {
+    height: 60px;
+    width: 180px;
+    position: absolute;
+    left: 20px;
+}
+
+.Chatting {
+    height: 60px;
+    width: 100px;
+    position: absolute;
+    left: 200px;
+}
+
+.Introduction {
+    height: 60px;
+    width: 100px;
+    position: absolute;
+    left: 320px;
+}
+
+#textAbout {
+    font-size: 45px;
+    text-align: center;
+    margin: 0;
+}
+
+#textChatting {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+#textIntroduction {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+/* contentBox */
+.contentBox {
+    height: 1020px;
+    width: auto;
+    /* display: grid;
+    grid-template-rows: auto auto auto; */
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+.myMajor {
+    height: 260px;
+    display: grid;
+    grid-template-columns: 60% auto;
+    overflow: auto;
+}
+
+.myHobby {
+    height: 390px;
+    display: grid;
+    grid-template-columns: 40% auto;
+    overflow: auto;
+}
+
+.textMyHobby {
+    border-top: 1px dashed black;;
+}
+
+.myInterest {
+    height: 370px;
+    display: grid;
+    grid-template-columns: 70% auto;
+    overflow: auto;
+}
+
+.textMyInterest {
+    border-top: 1px dashed black;;
+}
+
+/* text in the content */
+.textTitle {
+    font-family: 'Times New Roman';
+    font-size: 30px;
+    text-align: center;
+    margin: 0;
+}
+
+.textTitle2 {
+    font-family: 'Times New Roman';
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.aText {
+    font-family: 'Times New Roman';
+    font-size: 16px;
+}
+
+/* image in the content  */
+.myTeam {
+    height: auto;
+    max-width: 90%;
+}
+
+.astronaut {
+    height: auto;
+    max-width: 90%;
+    margin-left: 20px;
+}
+
+.programLanguage {
+    height: auto;
+    max-width: 90%;
+    margin-left: 20px;
+}
+
+/* helpBox */
+.helpBox {
+    height: 50px;
+    width: auto;
+    border-top: 1px solid black;;
+}
+
+#toKnowMore {
+    text-align: center;
+}
+
+
+/* Botton */
+/* Botton color */
+a {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+/* Botton underline */
+a:hover{
+text-decoration: underline;
+}
