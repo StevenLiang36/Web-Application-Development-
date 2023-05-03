@@ -1,0 +1,208 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>indexTest</title>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--    <form action="/chatBox" method="post">-->
+<!--    <label for="userName">-->
+<!--        Welcome to the chatBox!</br>-->
+<!--        Please write your name:-->
+<!--    </label><br>-->
+<!--    <input type="text" id="userName" name="userName"><br>-->
+<!--    <input type="submit" name="send" value="Enter the chatBox" />-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatting</title>
+
+<!--    <link rel="stylesheet" type="text/css" href="../../css/chattingPage.css">-->
+    <style>
+        /* Background */
+        body {
+            background-color: whitesmoke;
+        }
+
+        /* text */
+        p {
+            color: black;
+        }
+
+        /* Navigator */
+        .navigatorBox {
+            height: 100px;
+            width: auto;
+            border-bottom: 1px solid black;;
+        }
+
+        nav {
+            height: 60px;
+            width: auto;
+            padding: 20px;
+        }
+
+        .Chatting {
+            height: 60px;
+            width: 180px;
+            position: absolute;
+            left: 20px;
+        }
+
+        .Introduction {
+            height: 60px;
+            width: 100px;
+            position: absolute;
+            left: 230px;
+        }
+
+        .About {
+            height: 60px;
+            width: 100px;
+            position: absolute;
+            left: 360px;
+        }
+
+        #textChatting {
+            font-size: 45px;
+            text-align: center;
+            margin: 0;
+        }
+
+        #textIntroduction {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 0;
+        }
+
+        #textAbout {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 0;
+        }
+
+
+        /* contentBox */
+        .contentBox {
+            height: 480px;
+            width: auto;
+        }
+
+        .inContent {
+            height: 480px;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        form {
+            padding-top: 100px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        h2 {
+            margin-bottom: 0;
+        }
+
+        .nameBox {
+            width: 192px;
+            height: 24px;
+        }
+
+        .submitKey {
+            width: 200px;
+            height: 30px;
+            margin-top: 20px;
+            background-color: whitesmoke;
+            border:1px solid black;
+        }
+
+        .submitKey:focus {
+            color: whitesmoke;
+            background-color: black;
+        }
+
+        .submitKey:hover {
+            cursor: pointer;
+            color: whitesmoke;
+            background-color: black;
+        }
+
+        /* helpBox */
+        .helpBox {
+            height: 50px;
+            width: auto;
+            border-top: 1px solid black;;
+        }
+
+        #toKnowMore {
+            text-align: center;
+        }
+
+
+        /* Botton */
+        /* Botton color */
+        a {
+            color: black;
+            text-decoration: none;
+            background-color: transparent;
+        }
+
+        /* Botton underline */
+        a:hover{
+        text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navigatorBox">
+        <nav>
+            <div class="Chatting">
+                <p id="textChatting">Chatting</p>
+            </div>
+            <div class="Introduction">
+                <p id="textIntroduction"><a href="#">Introduction</a></p>
+            </div>
+            <div class="About">
+                <p id="textAbout"><a href="#">About</a></p>
+            </div>
+        </nav>
+        <div class="contentBox">
+<!--            <form action="/chatBox" method="post">-->
+<!--            <label for="userName">-->
+<!--                Welcome to the chatBox!</br>-->
+<!--                Please write your name:-->
+<!--            </label><br>-->
+<!--            <input type="text" id="userName" name="userName"><br>-->
+<!--            <input type="submit" name="send" value="Enter the chatBox" />-->
+<!--            </form>-->
+            <div class="inContent">
+            <form action="/chatBox" method="post">
+                <h2>Welcome to the</h2>
+                <h1>chatBox!</h1>
+                <p>Please write your name:</p>
+                <input type="text" id="userName" name="userName" class="nameBox">
+                <input type="submit" name="send" value="Enter the chatBox" class="submitKey">
+            </form>
+        </div>
+        </div>
+        <div class="helpBox">
+            <p id="toKnowMore">To know more? contact me by email: z.liang.21@abdn.actually.uk</p>
+        </div>
+    </div>
+</body>
+</html>
