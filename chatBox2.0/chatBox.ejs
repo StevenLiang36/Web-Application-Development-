@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chatBox</title>
+
+    <script src=
+            "/socket.io/socket.io.js">
+    </script>
+
+    <style>
+        /* Background */
+        body {
+            background-color: whitesmoke;
+        }
+
+        /* text */
+        p {
+            color: black;
+        }
+
+        /* Navigator */
+        .navigatorBox {
+            height: 100px;
+            width: auto;
+            border-bottom: 1px solid black;;
+        }
+
+        nav {
+            height: 60px;
+            width: auto;
+            padding: 20px;
+        }
+
+        .Chatting {
+            height: 60px;
+            width: 180px;
+            position: absolute;
+            left: 20px;
+        }
+
+        .Introduction {
+            height: 60px;
+            width: 100px;
+            position: absolute;
+            left: 230px;
+        }
+
+        .About {
+            height: 60px;
+            width: 100px;
+            position: absolute;
+            left: 360px;
+        }
+
+        #textChatting {
+            font-size: 45px;
+            text-align: center;
+            margin: 0;
+        }
+
+        #textIntroduction {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 0;
+        }
+
+        #textAbout {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 0;
+        }
+
+        /* contentBox */
+        .contentBox {
+            height: 480px;
+            width: auto;
+            overflow: auto;
+        }
+
+        .msgBox {
+            height: 350px;
+            width: auto;
+            display: grid;
+        grid-template-columns: 20% auto 20%;
+        }
+
+        .inMsgBox {
+            background-color: whitesmoke;
+            border: solid 5px black;
+            padding: 10px;
+            overflow: auto;
+        }
+
+        .sendBox {
+            text-align: center;
+        }
+
+        #aText {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        #btn {
+            background-color: whitesmoke;
+            border:1px solid black;
+        }
+
+        #btn:focus {
+            color: whitesmoke;
+            background-color: black;
+        }
+
+        #btn:hover {
+            cursor: pointer;
+            color: whitesmoke;
+            background-color: black;
+        }
+
+        /* helpBox */
+        .helpBox {
+            height: 50px;
+            width: auto;
+            border-top: 1px solid black;;
+        }
+
+        #toKnowMore {
+            text-align: center;
+        }
+
+
+        /* Botton */
+        /* Botton color */
+        a {
+            color: black;
+            text-decoration: none;
+            background-color: transparent;
+        }
+
+        /* Botton underline */
+        a:hover{
+        text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navigatorBox">
+        <nav>
+            <div class="Chatting">
+                <p id="textChatting">Chatting</p>
+            </div>
+            <div class="Introduction">
+                <p id="textIntroduction"><a href="#">Introduction</a></p>
+            </div>
+            <div class="About">
+                <p id="textAbout"><a href="#">About</a></p>
+            </div>
+        </nav>
+    </div>
+    <div class="contentBox">
+        <h3>Hello! <%= userName %> </h3>
+        <div class="msgBox">
+            <div class="inMsgBox">
+                <h4>User List</h4>
+                <ul id="userList"></ul>
+            </div>
+            <div class="inMsgBox">
+                <h4>Chat Room</h4>
+                <ul id="chatList"></ul>
+            </div>
+            <div class="inMsgBox">
+                <h4>Events</h4>
+                <ul id="eventList"></ul>
+            </div>
+        </div>
+        <div class="sendBox">
+            <p id="aText">Enter your message here:</p>
+            <input type="text" id="msgSend">
+            <input type="button" value="Send" id="btn">
+        </div>
+    </div>
+    <div class="helpBox">
+            <p id="toKnowMore">To know more? contact me by email: z.liang.21@abdn.actually.uk</p>
+    </div>
+
+    <script>
+        const socket = io();
+        var msgSend = document.getElementById('msgSend');
+        var btn = document.getElementById('btn');
+
+        <!--const userName = '<%= userName %>';-->
+        <!--const userNameEl = document.getElementById('userName');-->
+        <!--userNameEl.innerHTML = userName;-->
+
+        // 这个的用处是??
+        // const list = document.getElementById('list');
+
+        // 发送输入信息到服务器
+        btn.addEventListener('click', () => {
+            socket.emit('clicked', '<%= userName %>: ' + msgSend.value);
+            msgSend.value = '';
+        });
+
+        // 输入信息中提示
+        let typingTimeout;
+        let isTyping = false;
+
+        msgSend.addEventListener('input', () => {
+            clearTimeout(typingTimeout);
+            if (msgSend.value && !isTyping) {
+                socket.emit('typing', '<%= userName %>' + ' is typing.');
+                isTyping = true;
+            }else if (!msgSend.value || isTyping){
+                typingTimeout = setTimeout(() => {
+                    socket.emit('stopTyping','<%= userName %>' + ' stops typing.');
+                    isTyping = false;
+                }, 2000);
+            }
+            });
+
+        <!--socket.on('connect',() => {-->
+        <!--    socket.emit('theUserName','<%= userName %>')-->
+        <!--})-->
+
+        <!--socket.emit('username', '<%= userName %>');-->
+
+        // 所有用户接收信息
+        socket.on('msgReceived', (msg) => {
+            var msgShow = document.createElement('li');
+            msgShow.textContent = msg;
+            chatList.appendChild(msgShow);
+        });
+
+        socket.on('userIsTyping', (msg) => {
+            var msgShow = document.createElement('li');
+            msgShow.textContent = msg;
+            eventList.appendChild(msgShow)
+        })
+
+        socket.on('userStopsTyping', (msg) => {
+            var msgShow = document.createElement('li');
+            msgShow.textContent = msg;
+            eventList.appendChild(msgShow);
+        })
+
+        // socket.on('userNameReceived',(name) => {
+        //     var nameShow = document.createElement('li')
+        //     nameShow.textContent = name;
+        //     userList.createChild(nameShow);
+        // })
+
+        // 向所有用户展示用户连接信息
+        socket.on('userConnected', (msg) => {
+            var userCon = document.createElement('li');
+            userCon.textContent = msg;
+            eventList.appendChild(userCon);
+        });
+
+        socket.on('userDisconnected', (msg) => {
+            var userDis = document.createElement('li');
+            userDis.textContent = msg;
+            eventList.appendChild(userDis);
+        });
+
+        socket.emit('addUser', '<%= userName %>');
+        const userListEl = document.getElementById('userList');
+
+        socket.on('updateUserList', (users) => {
+            // 清空列表
+            userListEl.innerHTML = '';
+            // 添加每个用户到列表中
+            users.forEach((username) => {
+                const userEl = document.createElement('li');
+                userEl.textContent = username;
+                userListEl.appendChild(userEl);
+              });
+            });
+
+
+
+        // socket.on('userEnter', (msg) => {
+        //     var userName = document.createElement('li');
+        //     userName.textContent = msg;
+        //     userList.appendChild(userName);
+        // })
+
+        // socket.on('userQuit', () => {
+        //
+        // })
+
+
+        // socket.on('userConnected', (userName) => {
+        //   const connectedEl = document.createElement('p');
+        //   connectedEl.textContent = `${userName} connected`;
+        //   const userListEl = document.getElementById('userList');
+        //   userListEl.appendChild(connectedEl);
+        // });
+        //
+        // socket.on('userDisconnected', (userName) => {
+        //   const disconnectedEl = document.createElement('p');
+        //   disconnectedEl.textContent = `${userName} disconnected`;
+        //   const userListEl = document.getElementById('userList');
+        //   userListEl.appendChild(disconnectedEl);
+        // });
+
+    </script>
+</body>
+</html>
