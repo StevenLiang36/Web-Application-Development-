@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chatBox</title>
+
+    <script src=
+            "/socket.io/socket.io.js">
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="/../css/chatBox.css">
+
+</head>
+
+<body>
+    <div class="navigatorBox">
+        <nav>
+            <div class="Chatting">
+                <p id="textChatting">Chatting</p>
+            </div>
+            <div class="Introduction">
+                <p id="textIntroduction"><a href="/introductionPage">Introduction</a></p>
+            </div>
+            <div class="About">
+                <p id="textAbout"><a href="/aboutPage">About</a></p>
+            </div>
+        </nav>
+    </div>
+    <div class="contentBox">
+        <h3>Hello! <%= userName %> </h3>
+        <div class="msgBox">
+            <div class="inMsgBox">
+                <h4>User List</h4>
+                <ul id="userList"></ul>
+            </div>
+            <div class="inMsgBox">
+                <h4>Chat Room</h4>
+                <ul id="chatList"></ul>
+            </div>
+            <div class="inMsgBox">
+                <h4>Events</h4>
+                <ul id="eventList"></ul>
+            </div>
+        </div>
+        <div class="sendBox">
+            <p id="aText">Enter your message here:</p>
+            <input type="text" id="msgSend">
+            <input type="button" value="Send" id="btn">
+        </div>
+    </div>
+    <div class="helpBox">
+            <p id="toKnowMore">To know more? contact me by email: z.liang.21@abdn.actually.uk</p>
+    </div>
+
+    <script>
+        const socket = io();
+        const userListEle = document.getElementById('userList');
+        var btn = document.getElementById('btn');
+        var msgSend = document.getElementById('msgSend');
+
+        // Send userName to the server
+        socket.emit('User', '<%= userName %>');
+
+        // Send message to the server
+        btn.addEventListener('click', () => {
+            socket.emit('clicked', '<%= userName %>: ' + msgSend.value);
+            msgSend.value = '';
+        });
+
+        // User's typing situation
+        let typingTimeout;
+        let isTyping = false;
+
+        msgSend.addEventListener('input', () => {
+            clearTimeout(typingTimeout);
+            if (msgSend.value && !isTyping) {
+                socket.emit('typing', '<%= userName %>' + ' is typing.');
+                isTyping = true;
+            }else if (!msgSend.value || isTyping){
+                typingTimeout = setTimeout(() => {
+                    socket.emit('stopTyping','<%= userName %>' + ' stops typing.');
+                    isTyping = false;
+                }, 2000);
+            }
+            });
+
+        // Send messages to all users
+        // receive messages and place them to the chatBox
+        socket.on('msgReceived', (msg) => {
+            var msgShow = document.createElement('li');
+            msgShow.textContent = msg;
+            chatList.appendChild(msgShow);
+        });
+
+        // event: user is typing
+        socket.on('userIsTyping', (msg) => {
+            var msgShow = document.createElement('li');
+            msgShow.textContent = msg;
+            eventList.appendChild(msgShow)
+        })
+
+        // event: user stops typing
+        socket.on('userStopsTyping', (msg) => {
+            var msgShow = document.createElement('li');
+            msgShow.textContent = msg;
+            eventList.appendChild(msgShow);
+        })
+
+        // event: user connected
+        socket.on('userConnected', (msg) => {
+            var userCon = document.createElement('li');
+            userCon.textContent = msg + ' connected';
+            eventList.appendChild(userCon);
+        });
+
+        // event: user disconnected
+        socket.on('userDisconnected', (msg) => {
+            var userDis = document.createElement('li');
+            userDis.textContent = msg + ' disconnected';
+            eventList.appendChild(userDis);
+        });
+
+        // update the userlist
+        socket.on('updateUserList', (users) => {
+            // clear the userList
+            userListEle.innerHTML = '';
+            // add users to the list
+            users.forEach((username) => {
+                const userEle = document.createElement('li');
+                userEle.textContent = username;
+                userListEle.appendChild(userEle);
+                });
+            });
+    </script>
+</body>
+
+</html>

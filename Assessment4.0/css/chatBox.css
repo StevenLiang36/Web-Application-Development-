@@ -1,0 +1,135 @@
+/* ...Background... */
+body {
+    background-color: whitesmoke;
+}
+
+/* ...text... */
+p {
+    color: black;
+}
+
+/* ...Navigator... */
+.navigatorBox {
+    height: 100px;
+    width: auto;
+    border-bottom: 1px solid black;;
+}
+
+nav {
+    height: 60px;
+    width: auto;
+    padding: 20px;
+}
+
+.Chatting {
+    height: 60px;
+    width: 180px;
+    position: absolute;
+    left: 20px;
+}
+
+.Introduction {
+    height: 60px;
+    width: 100px;
+    position: absolute;
+    left: 230px;
+}
+
+.About {
+    height: 60px;
+    width: 100px;
+    position: absolute;
+    left: 360px;
+}
+
+/* text in nav */
+#textChatting {
+    font-size: 45px;
+    text-align: center;
+    margin: 0;
+}
+
+#textIntroduction {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+#textAbout {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+/* ...contentBox... */
+.contentBox {
+    height: 480px;
+    width: auto;
+    overflow: auto;
+}
+
+.msgBox {
+    height: 350px;
+    width: auto;
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+}
+
+.inMsgBox {
+    background-color: whitesmoke;
+    border: solid 5px black;
+    padding: 10px;
+    overflow: auto;
+}
+
+.sendBox {
+    text-align: center;
+}
+
+#aText {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* button in content */
+#btn {
+    background-color: whitesmoke;
+    border:1px solid black;
+}
+
+#btn:focus {
+    color: whitesmoke;
+    background-color: black;
+}
+
+#btn:hover {
+    cursor: pointer;
+    color: whitesmoke;
+    background-color: black;
+}
+
+/* ...helpBox... */
+.helpBox {
+    height: 50px;
+    width: auto;
+    border-top: 1px solid black;;
+}
+
+#toKnowMore {
+    text-align: center;
+}
+
+/* ...Botton... */
+/* Botton color */
+a {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+/* Botton underline */
+a:hover{
+text-decoration: underline;
+}
